@@ -1,0 +1,219 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#2B123A">
+  <meta name="description" content="Orbit Zero is a short pixel-art problem-solving adventure with country-aware career-pathway guidance.">
+  <title>Orbit Zero — Pathfinder RPG</title>
+  <link rel="stylesheet" href="orbit-zero-rpg.css">
+  <script src="orbit-zero-rpg.js" defer></script>
+</head>
+<body>
+  <div class="app-shell">
+    <div class="stars" aria-hidden="true"></div>
+    <header class="site-header">
+      <button class="brand" type="button" id="brand-home" aria-label="Return to the Orbit Zero identity dock"><span class="brand-orb" aria-hidden="true">✦</span> ORBIT ZERO</button>
+      <span class="header-badge"><i aria-hidden="true"></i> LOCAL SIGNAL ONLINE</span>
+    </header>
+
+    <main>
+      <section class="screen active" id="welcome-screen" aria-labelledby="welcome-title">
+        <div class="intro-layout">
+          <div class="intro-copy">
+            <p class="eyebrow">PIXEL PATHFINDER // 05–08 MINUTES</p>
+            <h1 id="welcome-title">Find your route through a <span>fractured galaxy.</span></h1>
+            <p class="lede">Build an alien navigator, roam Orbit Zero, and solve three strange missions. Your choices become a saved Pathfinder Profile with career paths to explore.</p>
+            <div class="feature-list" aria-label="Game features">
+              <div><b>01</b><span><strong>Explore</strong> with WASD or arrow keys.</span></div>
+              <div><b>02</b><span><strong>Interact</strong> near beacons with E.</span></div>
+              <div><b>03</b><span><strong>Think</strong> through puzzles, trade-offs, and dialogue.</span></div>
+            </div>
+            <div class="pixel-map" aria-hidden="true"><span class="mini-planet p-one"></span><span class="mini-planet p-two"></span><span class="mini-ship">👾</span><span class="mini-star s-one">✦</span><span class="mini-star s-two">✧</span></div>
+          </div>
+
+          <section class="account-card" aria-labelledby="dock-title">
+            <div class="card-label"><span id="dock-title">IDENTITY DOCK</span><span id="account-status">NEW SIGNAL</span></div>
+            <p class="profile-intro">Set your current coordinates first. They help turn the game’s routes into practical, country-aware study guidance later.</p>
+            <form id="profile-fields" novalidate>
+              <label class="user-id-label" for="user-id">Navigator user_id</label>
+              <div class="id-row">
+                <input id="user-id" name="user_id" maxlength="32" autocomplete="username" spellcheck="false" placeholder="e.g. nova-07" aria-describedby="id-help">
+                <button class="icon-button" type="button" id="generate-id" title="Generate an ID" aria-label="Generate a navigator ID">⟳</button>
+              </div>
+              <p class="field-help" id="id-help">No password required. This static demo saves this profile for this ID only in this browser.</p>
+              <p class="returning-user" id="returning-user" hidden></p>
+
+              <div class="profile-form-grid">
+                <div class="profile-field">
+                  <label for="profile-country">Country</label>
+                  <select id="profile-country" name="country" required aria-describedby="country-help">
+                    <option value="">Choose a country</option>
+                    <option value="Singapore">Singapore</option>
+                    <option value="United States">United States</option>
+                    <option value="Vietnam">Vietnam</option>
+                  </select>
+                  <p class="field-help" id="country-help">This selects the education-route context, not your citizenship or eligibility.</p>
+                </div>
+                <div class="profile-field">
+                  <label for="profile-stage">Current education stage</label>
+                  <select id="profile-stage" name="education_stage" required disabled aria-describedby="stage-help">
+                    <option value="">Choose a country first</option>
+                  </select>
+                  <p class="field-help" id="stage-help">The list changes after you choose a country.</p>
+                </div>
+                <div class="profile-field">
+                  <label for="profile-academic-band">Current academic-performance band</label>
+                  <select id="profile-academic-band" name="academic_band" required>
+                    <option value="">Choose a band</option>
+                    <option value="Building foundations">Building foundations</option>
+                    <option value="Developing">Developing</option>
+                    <option value="Strong">Strong</option>
+                    <option value="Excellent">Excellent</option>
+                  </select>
+                </div>
+                <div class="profile-field">
+                  <label for="profile-time">Preferred study time</label>
+                  <select id="profile-time" name="study_time" required>
+                    <option value="">Choose a time frame</option>
+                    <option value="threeMonths">Up to 3 months</option>
+                    <option value="oneYear">About 1 year</option>
+                    <option value="twoYears">About 2 years</option>
+                    <option value="fourYears">4+ years</option>
+                  </select>
+                </div>
+                <div class="profile-field">
+                  <label for="profile-budget">Study budget</label>
+                  <select id="profile-budget" name="budget" required>
+                    <option value="">Choose a budget range</option>
+                    <option value="low">Low / cost-sensitive</option>
+                    <option value="medium">Medium</option>
+                    <option value="flexible">Flexible</option>
+                  </select>
+                </div>
+                <div class="profile-field">
+                  <label for="profile-location">Preferred learning location</label>
+                  <select id="profile-location" name="location" required>
+                    <option value="">Choose a location</option>
+                    <option value="home">Near home</option>
+                    <option value="city">Big city</option>
+                    <option value="remote">Remote-friendly</option>
+                  </select>
+                </div>
+                <div class="profile-field profile-field--wide">
+                  <label for="profile-urgency">Income urgency</label>
+                  <select id="profile-urgency" name="income_urgency" required>
+                    <option value="">Choose an income timeline</option>
+                    <option value="needsNow">Need income now</option>
+                    <option value="soon">Need income within 6 months</option>
+                    <option value="flexible">Flexible timeline</option>
+                  </select>
+                </div>
+              </div>
+              <p class="profile-status" id="profile-status" role="status" aria-live="polite">Choose your coordinates before entering the character creator.</p>
+              <button class="primary-btn full-btn" type="button" id="profile-continue">CONTINUE TO CHARACTER CREATOR <span aria-hidden="true">→</span></button>
+              <p class="profile-privacy">Your <code>user_id</code> stays in this browser. If you request AI school research after the game, the app sends only the pathway details needed for guidance—not this ID. These choices are not a diagnosis, admissions assessment, or guarantee.</p>
+            </form>
+
+            <div id="customization-panel" hidden aria-labelledby="creator-title">
+              <div class="creator-heading">
+                <p class="eyebrow">STEP 2 // CHARACTER CREATOR</p>
+                <h2 id="creator-title">Build your navigator.</h2>
+                <p>Appearance is for fun; your choices and coordinates shape the Pathfinder Profile.</p>
+              </div>
+              <div class="avatar-stage" id="avatar-stage" aria-live="polite">
+                <span class="pixel-spark spark-a" aria-hidden="true">✦</span><span class="pixel-spark spark-b" aria-hidden="true">✧</span>
+                <div class="avatar-aura" id="avatar-aura"><span id="avatar-preview">👾</span></div>
+                <p id="avatar-name">Void Sprite</p>
+              </div>
+
+              <fieldset class="custom-group">
+                <legend>Choose an alien monster</legend>
+                <div class="avatar-options" id="avatar-options"></div>
+              </fieldset>
+              <fieldset class="custom-group">
+                <legend>Choose its glow color</legend>
+                <div class="color-options" id="color-options"></div>
+              </fieldset>
+              <button class="secondary-btn full-btn" type="button" id="edit-profile">EDIT START COORDINATES</button>
+              <button class="primary-btn full-btn" type="button" id="start-button">ENTER ORBIT ZERO <span aria-hidden="true">→</span></button>
+              <button class="secondary-btn full-btn" type="button" id="resume-profile" hidden>VIEW SAVED PATHFINDER PROFILE</button>
+              <p class="tiny-note">Cosmetics are just for fun. Game choices—not your appearance—shape the result.</p>
+            </div>
+
+            <template id="profile-stage-options">
+              <optgroup label="Singapore" data-country="Singapore"><option value="Secondary">Secondary</option><option value="O-Level">O-Level</option><option value="N-Level">N-Level</option><option value="Junior College">Junior College</option><option value="A-Level">A-Level</option><option value="IB">IB</option><option value="Polytechnic">Polytechnic</option><option value="ITE">ITE</option><option value="Undergraduate">Undergraduate</option><option value="Graduate">Graduate</option></optgroup>
+              <optgroup label="United States" data-country="United States"><option value="Middle School">Middle School</option><option value="High School">High School</option><option value="AP/IB">AP/IB</option><option value="Freshman">Freshman</option><option value="Sophomore">Sophomore</option><option value="Junior">Junior</option><option value="Senior">Senior</option><option value="Undergraduate">Undergraduate</option><option value="Graduate">Graduate</option></optgroup>
+              <optgroup label="Vietnam" data-country="Vietnam"><option value="Grade 10">Grade 10</option><option value="Grade 11">Grade 11</option><option value="Grade 12">Grade 12</option><option value="National High School Exam preparation">National High School Exam preparation</option><option value="Vocational">Vocational</option><option value="Undergraduate">Undergraduate</option><option value="Graduate">Graduate</option></optgroup>
+            </template>
+          </section>
+        </div>
+      </section>
+
+      <section class="screen" id="game-screen" aria-labelledby="world-title">
+        <div class="game-topbar">
+          <div><p class="eyebrow">ORBIT ZERO // OPEN WORLD</p><h2 id="world-title">The galaxy has three loose ends.</h2></div>
+          <div class="hud-cluster" aria-label="Game status">
+            <div class="hud-card"><span>MISSIONS</span><b id="mission-count">0 / 3</b></div>
+            <div class="hud-card"><span>WARP-OUTS</span><b id="collision-count">0</b></div>
+            <button class="secondary-btn small-btn" type="button" id="return-to-dock">IDENTITY DOCK</button>
+          </div>
+        </div>
+        <div class="game-layout">
+          <div class="world-frame">
+            <canvas id="world-canvas" width="960" height="600" tabindex="0" aria-label="Orbit Zero overworld. Use WASD or arrow keys to move and E near a beacon to start a mission."></canvas>
+            <p class="world-tip" id="world-tip"><span aria-hidden="true">✦</span> Follow the violet lanes. Planets send you back to the hub.</p>
+            <div class="interaction-prompt" id="interaction-prompt" hidden><kbd>E</kbd><span id="interaction-text">Open beacon</span></div>
+          </div>
+          <aside class="mission-panel" aria-label="Mission log">
+            <div class="panel-title"><span>MISSION LOG</span><b id="active-mission">01 / 03</b></div>
+            <div class="navigator-card"><span class="mini-avatar" id="mini-avatar">👾</span><div><b id="mini-name">Void Sprite</b><span id="player-id-display">Navigator</span></div></div>
+            <ol class="mission-list" id="mission-list"></ol>
+            <div class="control-card"><p>FLIGHT CONTROLS</p><div><kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd><span>or arrows: move</span></div><div><kbd>E</kbd><span>interact</span></div><div><kbd>Esc</kbd><span>close a transmission</span></div></div>
+            <div class="legend"><p>MAP LEGEND</p><span><i class="legend-beacon"></i> mission beacon</span><span><i class="legend-planet"></i> reset planet</span></div>
+            <button class="secondary-btn full-btn" type="button" id="view-profile" disabled>OPEN PATHFINDER PROFILE</button>
+          </aside>
+        </div>
+      </section>
+
+      <section class="screen" id="results-screen" aria-labelledby="results-title">
+        <div class="results-wrap">
+          <section class="result-hero">
+            <p class="eyebrow">TIMELINE STABILIZED</p>
+            <h1 id="results-title">Your Pathfinder Profile is ready.</h1>
+            <p class="lede" id="result-lede"></p>
+            <div class="result-stats">
+              <div><b id="puzzle-stat">0 / 3</b><span>missions cleared</span></div>
+              <div><b id="reset-stat">0</b><span>planet warp-outs</span></div>
+              <div><b id="id-stat">—</b><span>saved user_id</span></div>
+            </div>
+          </section>
+          <div class="results-heading"><div><p class="eyebrow">ROUTES TO EXPLORE</p><h2>Three signals worth following</h2></div><p>These are conversation starters, not a diagnosis, hiring prediction, or limit on what you can do.</p></div>
+          <div class="career-list" id="career-list"></div>
+          <section class="ai-pathway-panel" id="ai-pathway-panel" aria-labelledby="ai-pathway-title">
+            <div class="ai-pathway-heading">
+              <div>
+                <p class="eyebrow">LIVE PATHWAY RESEARCH</p>
+                <h2 id="ai-pathway-title">Turn your signals into next steps.</h2>
+              </div>
+              <span class="status-line" id="ai-pathway-status" role="status" aria-live="polite">AI GUIDANCE STANDBY</span>
+            </div>
+            <p class="ai-pathway-intro">After your game result is ready, Orbit Zero can research current school and programme information for your chosen country. It returns guidance—not admissions advice or a promise of admission.</p>
+            <div class="ai-pathway-loading" id="ai-pathway-loading" hidden aria-live="polite"><span class="loading-orb" aria-hidden="true"></span><p>Scanning official pathway signals…</p></div>
+            <div class="ai-pathway-message ai-pathway-message--unavailable" id="ai-pathway-unavailable" role="status" aria-live="polite" hidden><p><strong>AI pathway guidance is temporarily unavailable.</strong> Your game-based top three careers are still ready to explore.</p></div>
+            <div class="ai-pathway-list" id="ai-pathway-list" aria-live="polite"><p class="ai-pathway-placeholder">Finish the Orbit Zero missions to unlock personalised pathway guidance.</p></div>
+            <div class="ai-pathway-footer">
+              <button class="secondary-btn" type="button" id="ai-pathway-retry" hidden>RETRY AI GUIDANCE</button>
+              <p>School suggestions use <strong>Reach</strong>, <strong>Match</strong>, and <strong>More Accessible</strong> labels when appropriate. Availability of comparable acceptance data varies by country and school.</p>
+            </div>
+          </section>
+          <details class="profile-details"><summary>See the transparent game profile</summary><p>The demo score combines problem-solving (30%), skills (25%), values (20%), practical constraints (15%), and a static demo market signal (10%). It is not live labour-market data.</p><pre id="profile-json"></pre></details>
+          <div class="result-actions"><button class="secondary-btn" type="button" id="back-to-world">RETURN TO GALAXY</button><button class="primary-btn" type="button" id="new-timeline">START A NEW TIMELINE</button></div>
+        </div>
+      </section>
+    </main>
+    <div class="modal-layer" id="modal-layer" hidden aria-live="polite"></div>
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  </div>
+</body>
+</html>
